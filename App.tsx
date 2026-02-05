@@ -90,7 +90,6 @@ const App: React.FC = () => {
 
   return (
     <div className="h-screen bg-[#6366f1] text-[#1e293b] font-['Lexend'] antialiased flex flex-col overflow-hidden selection:bg-indigo-200">
-      {/* Confetti stays at top level to fall over everything, but the message is moved */}
       {showConfetti && <Confetti />}
       
       {showWelcome && <WelcomeModal onClose={() => { sounds.playPop(); setShowWelcome(false); sounds.playFanfare(); }} />}
@@ -159,21 +158,7 @@ const App: React.FC = () => {
         <section className="col-span-12 lg:col-span-9 flex flex-col h-full overflow-hidden relative">
           <div className="bg-white rounded-[2.5rem] shadow-2xl flex flex-col h-full border-[6px] border-white overflow-hidden relative">
             
-            {/* IN-GAME "AMAZING" OVERLAY: This now only appears inside the white box */}
-            {showConfetti && !isQuestFinished && (
-              <div className="absolute inset-0 z-50 bg-white/40 backdrop-blur-[2px] flex items-center justify-center animate-in fade-in zoom-in duration-300">
-                <div className="bg-white border-4 border-yellow-400 p-8 rounded-[3rem] shadow-2xl text-center">
-                  <div className="text-6xl mb-4 animate-bounce">🎉</div>
-                  <h2 className="text-3xl font-black text-indigo-900 uppercase font-kids">AMAZING!</h2>
-                  <button 
-                    onClick={nextLevel}
-                    className="mt-6 bg-[#22c55e] text-white px-10 py-3 rounded-2xl font-black text-xl shadow-[0_6px_0_0_#15803d] active:translate-y-1 active:shadow-none transition-all"
-                  >
-                    NEXT 🚀
-                  </button>
-                </div>
-              </div>
-            )}
+            {/* REMOVED THE "AMAZING!" OVERLAY FROM HERE */}
 
             <div className="p-4 flex items-center justify-between px-6 shrink-0 bg-indigo-50 border-b-2 border-indigo-100">
                <button onClick={prevLevel} disabled={currentModuleIdx === 0 && currentLevelIdx === 0} className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-md border-b-4 border-indigo-200 active:translate-y-1 active:border-b-0 disabled:opacity-20">◀️</button>
