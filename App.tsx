@@ -25,13 +25,12 @@ const App: React.FC = () => {
   const currentModule = FULL_CURRICULUM[currentModuleIdx];
   const currentLevel = currentModule.lessons[currentLevelIdx];
 
-  // CALCULATE PROGRESS FOR KIDS (Visual bar)
   const totalLevels = currentModule.lessons.length;
   const progressPercent = ((currentLevelIdx + 1) / totalLevels) * 100;
 
   const handleLevelUp = () => {
     if (!completed.has(currentLevel.id)) {
-      sounds.playFanfare(); // Immediate audio reward
+      sounds.playFanfare();
       setStars(prev => prev + currentLevel.stars);
       setCompleted(prev => new Set(prev).add(currentLevel.id));
       
@@ -44,7 +43,7 @@ const App: React.FC = () => {
   };
 
   const nextLevel = () => {
-    sounds.playPop(); // Visual/Audio feedback on click
+    sounds.playPop();
     if (currentLevelIdx < currentModule.lessons.length - 1) {
       setCurrentLevelIdx(prev => prev + 1);
     } else if (currentModuleIdx < FULL_CURRICULUM.length - 1) {
@@ -74,7 +73,7 @@ const App: React.FC = () => {
     setCompleted(new Set());
     setStars(0);
     setIsQuestFinished(false);
-    setShowWelcome(false); // Close welcome on restart
+    setShowWelcome(false);
     setShowConfetti(true);
     setTimeout(() => setShowConfetti(false), 3000);
   };
@@ -84,14 +83,16 @@ const App: React.FC = () => {
       handleLevelUp();
       const timer = setTimeout(() => {
         nextLevel();
-      }, 2000); // Give 2 seconds for the child to see the "Done" state
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [currentLevel.id]);
 
   return (
     <div className="h-screen bg-[#6366f1] text-[#1e293b] font-['Lexend'] antialiased flex flex-col overflow-hidden selection:bg-indigo-200">
-      {(showConfetti || isQuestFinished) && <Confetti />}
+      {/* Confetti stays at top level to fall over everything, but the message is moved */}
+      {showConfetti && <Confetti />}
+      
       {showWelcome && <WelcomeModal onClose={() => { sounds.playPop(); setShowWelcome(false); sounds.playFanfare(); }} />}
 
       {isQuestFinished && (
@@ -118,7 +119,6 @@ const App: React.FC = () => {
             <h1 className="text-lg font-black text-white uppercase font-kids tracking-wider">SPRITE QUEST</h1>
           </div>
           
-          {/* VISUAL PROGRESS BAR FOR KIDS */}
           <div className="hidden md:flex flex-col items-end gap-1">
              <div className="w-40 h-3 bg-white/20 rounded-full overflow-hidden border border-white/10">
                 <div className="h-full bg-yellow-400 transition-all duration-500" style={{ width: `${progressPercent}%` }}></div>
@@ -156,9 +156,25 @@ const App: React.FC = () => {
           </div>
         </aside>
 
-        <section className="col-span-12 lg:col-span-9 flex flex-col h-full overflow-hidden">
-          <div className="bg-white rounded-[2.5rem] shadow-2xl flex flex-col h-full border-[6px] border-white overflow-hidden">
-            {/* BIG NAVIGATION FOR KIDS */}
+        <section className="col-span-12 lg:col-span-9 flex flex-col h-full overflow-hidden relative">
+          <div className="bg-white rounded-[2.5rem] shadow-2xl flex flex-col h-full border-[6px] border-white overflow-hidden relative">
+            
+            {/* IN-GAME "AMAZING" OVERLAY: This now only appears inside the white box */}
+            {showConfetti && !isQuestFinished && (
+              <div className="absolute inset-0 z-50 bg-white/40 backdrop-blur-[2px] flex items-center justify-center animate-in fade-in zoom-in duration-300">
+                <div className="bg-white border-4 border-yellow-400 p-8 rounded-[3rem] shadow-2xl text-center">
+                  <div className="text-6xl mb-4 animate-bounce">🎉</div>
+                  <h2 className="text-3xl font-black text-indigo-900 uppercase font-kids">AMAZING!</h2>
+                  <button 
+                    onClick={nextLevel}
+                    className="mt-6 bg-[#22c55e] text-white px-10 py-3 rounded-2xl font-black text-xl shadow-[0_6px_0_0_#15803d] active:translate-y-1 active:shadow-none transition-all"
+                  >
+                    NEXT 🚀
+                  </button>
+                </div>
+              </div>
+            )}
+
             <div className="p-4 flex items-center justify-between px-6 shrink-0 bg-indigo-50 border-b-2 border-indigo-100">
                <button onClick={prevLevel} disabled={currentModuleIdx === 0 && currentLevelIdx === 0} className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-md border-b-4 border-indigo-200 active:translate-y-1 active:border-b-0 disabled:opacity-20">◀️</button>
                <div className="text-center">
@@ -168,7 +184,6 @@ const App: React.FC = () => {
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 pb-5 flex flex-col min-h-0 custom-scrollbar bg-white">
-              {/* Game components remain the same as your structure */}
               {currentLevel.content === 'COORDINATE_GAME' ? (
                 <SpriteSimulator onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.content === 'EVENTS_GAME' ? (
