@@ -158,8 +158,6 @@ const App: React.FC = () => {
         <section className="col-span-12 lg:col-span-9 flex flex-col h-full overflow-hidden relative">
           <div className="bg-white rounded-[2.5rem] shadow-2xl flex flex-col h-full border-[6px] border-white overflow-hidden relative">
             
-            {/* REMOVED THE "AMAZING!" OVERLAY FROM HERE */}
-
             <div className="p-4 flex items-center justify-between px-6 shrink-0 bg-indigo-50 border-b-2 border-indigo-100">
                <button onClick={prevLevel} disabled={currentModuleIdx === 0 && currentLevelIdx === 0} className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-md border-b-4 border-indigo-200 active:translate-y-1 active:border-b-0 disabled:opacity-20">◀️</button>
                <div className="text-center">
@@ -169,14 +167,23 @@ const App: React.FC = () => {
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 pb-5 flex flex-col min-h-0 custom-scrollbar bg-white">
+              {/* FIXED LOGIC BELOW: Specifically checks for game types and quiz types */}
               {currentLevel.content === 'COORDINATE_GAME' ? (
                 <SpriteSimulator onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.content === 'EVENTS_GAME' ? (
                  <EventsGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.content === 'LOOP_GAME_EASY' ? (
                  <LoopGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
-              ) : (
+              ) : currentLevel.type === 'quiz' ? (
+                 <QuizComponent onWin={handleLevelUp} contentId={currentLevel.content} />
+              ) : currentLevel.type === 'project' ? (
                  <LogicWorkshop mode="LOGIC" onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
+              ) : (
+                 /* This shows for text/video lessons instead of the toy game */
+                 <div className="flex flex-col items-center justify-center h-full text-center p-10">
+                    <h2 className="text-3xl font-black text-indigo-900 mb-4">{currentLevel.title}</h2>
+                    <p className="text-indigo-600 text-xl font-bold mb-8">Ready to learn? Click Next to start! 🚀</p>
+                 </div>
               )}
             </div>
           </div>
