@@ -31,11 +31,9 @@ export const LogicWorkshop: React.FC<{ mode: WorkshopMode, onWin?: () => void, i
       emoji: blockEmojis[blocks.length % blockEmojis.length],
     };
 
-    // We calculate the count immediately to solve the "lag"
     const nextCount = blocks.length + 1;
     setBlocks(prev => [...prev, newBlock]);
 
-    // INSTANT WIN CHECK: No setTimeout, no delay. 
     // Triggers exactly when the 5th block is "caught"
     if (nextCount >= 5) {
       setIsWin(true);
@@ -92,18 +90,7 @@ export const LogicWorkshop: React.FC<{ mode: WorkshopMode, onWin?: () => void, i
         </div>
       </div>
 
-      {isWin && (
-        <div className="absolute inset-0 z-[100] bg-indigo-900/90 backdrop-blur-md flex flex-col items-center justify-center p-6 animate-in zoom-in">
-          <div className="text-8xl mb-4 animate-bounce">🎉</div>
-          <h3 className="text-3xl font-black text-white text-center uppercase">Amazing!</h3>
-          <button 
-            onClick={() => onNext?.()} 
-            className="mt-6 bg-emerald-500 text-white px-12 py-4 rounded-[1.5rem] font-black text-xl shadow-[0_8px_0_0_#065f46]"
-          >
-            NEXT 🚀
-          </button>
-        </div>
-      )}
+      {/* REMOVED: The {isWin && ...} overlay block that showed the Amazing interface */}
     </div>
   );
 };
