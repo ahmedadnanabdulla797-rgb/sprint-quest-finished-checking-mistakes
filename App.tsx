@@ -11,8 +11,7 @@ import { WelcomeModal } from './components/WelcomeModal';
 import { sounds } from './services/sounds';
 import { LogicWorkshop } from './components/LogicWorkshop';
 import logo from './assets/Million Coders Logo_DRK GRY.png';
-import { CreativeGame } from './components/CreativeGame';
-import { PlaygroundGame } from './components/PlaygroundGame';
+import { CreativeGame } from './components/CreativeGame'; // This is our new replacement
 
 const App: React.FC = () => {
   const [currentModuleIdx, setCurrentModuleIdx] = useState(0);
@@ -175,9 +174,7 @@ const App: React.FC = () => {
                  <EventsGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.content === 'LOOP_GAME_EASY' ? (
                  <LoopGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
-              ) : currentLevel.content === 'PLAYGROUND_EASY' ? (
-                 <PlaygroundGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
-              ) : currentLevel.content === 'CREATIVE_GAME' ? (
+              ) : (currentLevel.content === 'CREATIVE_GAME' || currentLevel.content === 'PLAYGROUND_EASY') ? (
                  <CreativeGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.type === 'quiz' ? (
                  <QuizComponent onWin={handleLevelUp} contentId={currentLevel.content} />
