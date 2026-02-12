@@ -11,6 +11,7 @@ import { WelcomeModal } from './components/WelcomeModal';
 import { sounds } from './services/sounds';
 import { LogicWorkshop } from './components/LogicWorkshop';
 import logo from './assets/Million Coders Logo_DRK GRY.png';
+import { PlaygroundGame } from './components/PlaygroundGame';
 
 const App: React.FC = () => {
   const [currentModuleIdx, setCurrentModuleIdx] = useState(0);
