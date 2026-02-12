@@ -168,19 +168,20 @@ const App: React.FC = () => {
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 pb-5 flex flex-col min-h-0 custom-scrollbar bg-white">
-              {/* FIXED LOGIC BELOW: Specifically checks for game types and quiz types */}
+              {/* FIXED LOGIC BELOW: Added PlaygroundGame check */}
               {currentLevel.content === 'COORDINATE_GAME' ? (
                 <SpriteSimulator onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.content === 'EVENTS_GAME' ? (
                  <EventsGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.content === 'LOOP_GAME_EASY' ? (
                  <LoopGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
+              ) : currentLevel.content === 'PLAYGROUND_EASY' ? (
+                 <PlaygroundGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.type === 'quiz' ? (
                  <QuizComponent onWin={handleLevelUp} contentId={currentLevel.content} />
               ) : currentLevel.type === 'project' ? (
                  <LogicWorkshop mode="LOGIC" onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : (
-                 /* This shows for text/video lessons instead of the toy game */
                  <div className="flex flex-col items-center justify-center h-full text-center p-10">
                     <h2 className="text-3xl font-black text-indigo-900 mb-4">{currentLevel.title}</h2>
                     <p className="text-indigo-600 text-xl font-bold mb-8">Ready to learn? Click Next to start! 🚀</p>
