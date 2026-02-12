@@ -1,118 +1,236 @@
 import { Module, LessonStatus } from './types';
 
+
+
 export const FULL_CURRICULUM: Module[] = [
+
   {
-    id: 'module-0',
-    title: 'Module 1: Creative Master',
-    lessons: [
-      {
-        id: '0.1',
-        title: 'Level 1: Dance Party', 
-        description: 'Make your pet jump and spin!',
-        type: 'project',
-        status: LessonStatus.AVAILABLE,
-        stars: 500,
-        content: 'CREATIVE_GAME' // This opens the jumping pet game first!
-      },
-      {
-        id: '0.2',
-        title: 'Level 2: Creative Quiz',
-        description: 'Do you know your pet magic?',
-        type: 'quiz',
-        status: LessonStatus.AVAILABLE,
-        stars: 150,
-        content: 'QUIZ_MODULE_6'
-      }
-    ]
-  },
-  {
+
     id: 'module-1',
-    title: 'Module 2: Coordinates',
+
+    title: '🚀 Quest 1: Moving Around',
+
     lessons: [
+
       {
+
         id: '1.2',
-        title: 'Level 1: Treasure Hunt', 
-        description: 'Type the code to move the cat!',
+
+        title: 'Level 1: Treasure Hunt 💎', 
+
+        description: 'Help the cat find the hidden treasure!',
+
         type: 'project',
+
         status: LessonStatus.AVAILABLE,
+
         stars: 300,
+
         content: 'COORDINATE_GAME'
+
       },
+
       {
+
         id: '1.3',
-        title: 'Level 2: Map Quiz',
-        description: 'Do you know the secret codes?',
+
+        title: 'Level 2: Secret Map Game 🗺️',
+
+        description: 'Do you know the secret paths?',
+
         type: 'quiz',
+
         status: LessonStatus.AVAILABLE,
+
         stars: 150,
+
         content: 'QUIZ_COORDINATES'
+
       }
+
     ]
+
   },
+
   {
+
     id: 'module-2',
-    title: 'Module 3: Magic Rules',
+
+    title: '✨ Quest 2: Magic Buttons',
+
     lessons: [
+
       {
+
         id: '2.2',
-        title: 'Level 1: Rule Maker',
-        description: 'Connect rules to make the cat dance!',
+
+        title: 'Level 1: Make a Dance 💃',
+
+        description: 'Click buttons to make the cat move!',
+
         type: 'project',
+
         status: LessonStatus.AVAILABLE,
+
         stars: 400,
+
         content: 'EVENTS_GAME'
+
       },
+
       {
+
         id: '2.3',
-        title: 'Level 2: Rules Quiz',
-        description: 'Can you match the magic blocks?',
+
+        title: 'Level 2: Matching Game 🧩',
+
+        description: 'Find the blocks that look the same!',
+
         type: 'quiz',
+
         status: LessonStatus.AVAILABLE,
+
         stars: 150,
+
         content: 'QUIZ_EVENTS'
+
       }
+
     ]
+
   },
+
   {
+
     id: 'module-3',
-    title: 'Module 4: Robot Brains',
+
+    title: '🤖 Quest 3: Robot Fun',
+
     lessons: [
+
       {
+
         id: '3.1',
-        title: 'Level 1: Do It Again!',
-        description: 'Make Kit dance over and over.',
+
+        title: 'Level 1: Do It Again! 🔁',
+
+        description: 'Make the robot dance forever and ever!',
+
         type: 'project',
+
         status: LessonStatus.AVAILABLE,
+
         stars: 250,
+
         content: 'LOOP_GAME_EASY'
+
       },
+
       {
+
         id: '3.2',
-        title: 'Level 2: Loop Quiz',
-        description: 'Checking your loop skills!',
+
+        title: 'Level 2: Robot Loop Game ⚙️',
+
+        description: 'Show off your robot skills!',
+
         type: 'quiz',
+
         status: LessonStatus.AVAILABLE,
+
         stars: 150,
+
         content: 'QUIZ_MODULE_3'
+
       },
+
       {
+
         id: '3.3',
-        title: 'Level 3: Thinking Robot',
-        description: 'Teach Kit to turn at the walls!',
+
+        title: 'Level 3: Smart Robot 🧠',
+
+        description: 'Help the robot find the walls!',
+
         type: 'project',
+
         status: LessonStatus.AVAILABLE,
+
         stars: 300,
+
         content: 'CONDITION_GAME_EASY'
+
       },
+
       {
+
         id: '3.4',
-        title: 'Level 4: Brain Quiz',
-        description: 'Does the robot have a brain?',
+
+        title: 'Level 4: Super Brain Game 💡',
+
+        description: 'Are you a master coder?',
+
         type: 'quiz',
+
         status: LessonStatus.AVAILABLE,
+
         stars: 150,
+
         content: 'QUIZ_CONDITIONS'
+
       }
+
     ]
+
+  },
+
+  {
+
+    id: 'module-6',
+
+    title: '🎨 Quest 6: Creative Master',
+
+    lessons: [
+
+      {
+
+        id: '6.1',
+
+        title: 'Level 1: The Big Finale 🏆',
+
+        description: 'Combine motion, loops, and logic to create something amazing!',
+
+        type: 'project',
+
+        status: LessonStatus.AVAILABLE,
+
+        stars: 500,
+
+        content: 'CREATIVE_GAME'
+
+      },
+
+      {
+
+        id: '6.2',
+
+        title: 'Level 2: Master Coder Game 🌟',
+
+        description: 'Show us what you learned in your journey!',
+
+        type: 'quiz',
+
+        status: LessonStatus.AVAILABLE,
+
+        stars: 200,
+
+        content: 'QUIZ_MODULE_6'
+
+      }
+
+    ]
+
   }
+
 ];
+
