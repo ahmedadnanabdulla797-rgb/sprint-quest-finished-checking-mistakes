@@ -12,6 +12,7 @@ import { sounds } from './services/sounds';
 import { LogicWorkshop } from './components/LogicWorkshop';
 import logo from './assets/Million Coders Logo_DRK GRY.png';
 import { PlaygroundGame } from './components/PlaygroundGame';
+import { CreativeGame } from './components/CreativeGame'; // Added for Module 6
 
 const App: React.FC = () => {
   const [currentModuleIdx, setCurrentModuleIdx] = useState(0);
@@ -146,7 +147,7 @@ const App: React.FC = () => {
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black shrink-0 ${isDone ? 'bg-emerald-500 text-white' : isCurrent ? 'bg-indigo-900 text-yellow-400' : 'bg-white/20 text-white'}`}>
                       {isDone ? '★' : idx + 1}
                     </div>
-                    <span className={`text-[11px] font-black uppercase text-left leading-tight ${isCurrent ? 'text-indigo-900' : 'text-white'}`}>
+                    <span className={`text-[11px] font-black uppercase text-left Bird-tight ${isCurrent ? 'text-indigo-900' : 'text-white'}`}>
                       {level.title.split(': ')[1] || level.title}
                     </span>
                   </button>
@@ -168,7 +169,6 @@ const App: React.FC = () => {
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 pb-5 flex flex-col min-h-0 custom-scrollbar bg-white">
-              {/* FIXED LOGIC BELOW: Added PlaygroundGame check */}
               {currentLevel.content === 'COORDINATE_GAME' ? (
                 <SpriteSimulator onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.content === 'EVENTS_GAME' ? (
@@ -177,6 +177,8 @@ const App: React.FC = () => {
                  <LoopGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.content === 'PLAYGROUND_EASY' ? (
                  <PlaygroundGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
+              ) : currentLevel.content === 'CREATIVE_GAME' ? (
+                 <CreativeGame onWin={handleLevelUp} isCompleted={completed.has(currentLevel.id)} onNext={nextLevel} />
               ) : currentLevel.type === 'quiz' ? (
                  <QuizComponent onWin={handleLevelUp} contentId={currentLevel.content} />
               ) : currentLevel.type === 'project' ? (
