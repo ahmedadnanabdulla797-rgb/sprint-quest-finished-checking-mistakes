@@ -12,6 +12,8 @@ import { sounds } from './services/sounds';
 import { LogicWorkshop } from './components/LogicWorkshop';
 import logo from './assets/Million Coders Logo_DRK GRY.png';
 import { CreativeGame } from './components/CreativeGame';
+import { PlaygroundGame } from './components/PlaygroundGame';
+
 const App: React.FC = () => {
   const [currentModuleIdx, setCurrentModuleIdx] = useState(0);
   const [currentLevelIdx, setCurrentLevelIdx] = useState(0); 
@@ -145,7 +147,7 @@ const App: React.FC = () => {
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black shrink-0 ${isDone ? 'bg-emerald-500 text-white' : isCurrent ? 'bg-indigo-900 text-yellow-400' : 'bg-white/20 text-white'}`}>
                       {isDone ? '★' : idx + 1}
                     </div>
-                    <span className={`text-[11px] font-black uppercase text-left Bird-tight ${isCurrent ? 'text-indigo-900' : 'text-white'}`}>
+                    <span className={`text-[11px] font-black uppercase text-left leading-tight ${isCurrent ? 'text-indigo-900' : 'text-white'}`}>
                       {level.title.split(': ')[1] || level.title}
                     </span>
                   </button>
