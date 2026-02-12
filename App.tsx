@@ -11,8 +11,7 @@ import { WelcomeModal } from './components/WelcomeModal';
 import { sounds } from './services/sounds';
 import { LogicWorkshop } from './components/LogicWorkshop';
 import logo from './assets/Million Coders Logo_DRK GRY.png';
-import { CreativeGame } from './components/CreativeGame'; // Added for Module 6
-
+import { CreativeGame } from './components/CreativeGame';
 const App: React.FC = () => {
   const [currentModuleIdx, setCurrentModuleIdx] = useState(0);
   const [currentLevelIdx, setCurrentLevelIdx] = useState(0); 
